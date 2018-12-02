@@ -1,19 +1,9 @@
 <%= form_for(task) do |f| %>
   
   <%= f.label :content, 'タスク' %>
-  <br>
   <%= f.text_field :content %>
-  
-  <br>
-  
   <%= f.label :status, 'ステータス' %>
-  <br>
   <%= f.text_field :status %>
-  
-  <br>
-  
   <%= f.submit '投稿する' %>
 
 <% end %>
-
-
