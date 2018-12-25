@@ -1,6 +1,21 @@
-<h1><%= @task.id %>番タスクの編集ページ</h1>
+<h1>タスクの編集ページ</h1>
 
-<%= render 'form', task: @task %>
+<%= form_for(@task) do |f| %>
+      
+<div class='form-group'>
+  <%= f.label :content, 'タスク' %>
+  <%= f.text_field :content, class: 'form-control'%>
+</div>
+
+<div class='form-group'>
+  <%= f.label :status, 'ステータス' %>
+  <%= f.text_field :status, class: 'form-control' %>
+</div>
+
+<%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+
+<% end %>
+
 
 
 <%= link_to 'タスク一覧に戻る', tasks_path %>

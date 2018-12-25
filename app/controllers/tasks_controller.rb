@@ -8,7 +8,7 @@ class TasksController < ApplicationController
   end 
   
   def show
-    @task = Task.find(params[:id])
+    correct_user
   end 
   
   def new
@@ -20,24 +20,23 @@ class TasksController < ApplicationController
     
     if @task.save
       flash[:success] = 'タスクが正常に登録されました'
-      redirect_to @task
+      redirect_to root_path
     else
-      @task = current_user.tasks.order('created_at DESC').page(params[:page])
       flash.now[:danger] = 'タスクが登録されませんでした'
       render :new
     end 
   end 
   
   def edit
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end 
   
   def update
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
     
     if @task.update(task_params)
       flash[:success] = 'タスクが正常に編集されました'
-      redirect_to @task
+      redirect_to root_path
     else
       flash.now[:danger] = 'タスクを編集できませんでした'
       render :edit
